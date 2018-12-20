@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(int argc, const char * argv[])
+{
+    int a;
+    FILE *f, *g;
+    int K;
+    printf("Enter K: ");
+    scanf("%d", &K);
+    if(!(f = fopen("input.txt", "a+")))
+        printf("Error open File!\n");
+    int i;
+    srand(time(NULL));
+    for(i = 0; i < 10; ++i){
+        a = rand() % 99;
+        fprintf(f, "%d ", a);
+    }
+    fclose(f);
+    if(!(g = fopen("output.txt", "a+")))
+        printf("Error open File!\n");
+    if(!(f = fopen("input.txt", "r+")))
+        printf("Error open File!\n");
+    int r;
+    for(i = 0; i < 10; ++i){
+        fscanf(f, "%d ", &r);
+        if(r % K == 0)
+        fprintf(g, "%d ", r);
+    }
+}
